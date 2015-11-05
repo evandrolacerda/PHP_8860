@@ -12,7 +12,6 @@ require_once( "classes/classDatabase.php" );
  */
 class ShowRoomModel
 {
-
     private $dbData = null;
     private $sError = "";
     private $aoData = null;

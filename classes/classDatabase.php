@@ -17,7 +17,7 @@ class Database {
     private $sUser              = '';
     private $sPassword          = '';
     private $sDatabase          = '';
-    private $pdoData            = null;
+    protected $pdoData            = null;
     private $bStatus            = false;
     private $sError             = "";
     private $pdoStatement       = null;
@@ -85,6 +85,18 @@ class Database {
             $this->bQryStatus = false;
         }
     }
+    
+    public function execute( $preSql, $aValues ){
+        try{
+            $this->pdoStatement = $this->pdoData->prepare( $preSql );
+            $this->pdoStatement->execute( $aValues );
+            $this->bQryStatus = true;
+            
+        } catch (\PDOException $ex) {
+            throw new \Exception("Erro ao inserir dados no banco de dados: " . $ex->getMessage() );
+        }
+    }  
+    
 
     public function getQryStatus() {
         return $this->bQryStatus;
@@ -151,6 +163,27 @@ class NWDatabase extends Database
         $columns = $this->getColumns();
         $this->select( sprintf("SELECT %s FROM %s", $columns, $table ) );
     }
+    
+    public function insertProduct( $aValues )
+    {
+        $sql = "INSERT INTO products ( CategoryId, Discontinued, ProductName, QuantityPerUnit, "
+                . "ReorderLevel, SupplierId, UnitPrice, UnitsInStock, UnitsOnOrder  )"
+                . "VALUES( ?, ?, ?, ? ,?, ?, ?, ?, ?)";
+        
+        try{
+            $stmt = $this->pdoData->prepare( $sql );
+            
+        } catch (PDOException $ex) {
+
+        }
+    }
+    
+    public function updateProduct()
+    {
+        
+    }
+    
+    
 }
 
 
