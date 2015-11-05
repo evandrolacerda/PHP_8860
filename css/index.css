@@ -1,0 +1,75 @@
+
+html, body
+{
+    width: 100%;
+    height: 100%;
+    
+    margin: 0;
+    padding: 0;
+    background:#eee;
+}
+
+#divWrap
+{
+    position: absolute;
+    
+    left: 5%;
+    top: 0px;
+    width: 90%;
+    height: 100%;
+    
+    background-color: #ddd;
+    
+    margin: 0 auto;
+}
+
+#hdrTop
+{
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 15%;
+    
+    color: #fff;
+    background-color: #000;
+}
+
+#sctWorkspace
+{
+    position: absolute;
+    left: 0px;
+    top: 15%;
+    width: 100%;
+    height: 80%;
+    
+    background-color: #ccc;
+    
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+#ftrBottom
+{
+    position: absolute;
+    left: 0px;
+    top: 95%;
+    width: 100%;
+    height: 5%;
+    
+    color: #fff;
+    background-color: #000;
+}
+
+#ifrWsp
+{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 98%;
+    height: 98%;
+
+    background-color: #DDD;
+
+    border: 0px;
+}
