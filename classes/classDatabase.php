@@ -166,16 +166,12 @@ class NWDatabase extends Database
     
     public function insertProduct( $aValues )
     {
-        $sql = "INSERT INTO products ( CategoryId, Discontinued, ProductName, QuantityPerUnit, "
-                . "ReorderLevel, SupplierId, UnitPrice, UnitsInStock, UnitsOnOrder  )"
-                . "VALUES( ?, ?, ?, ? ,?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO products ( ProductName, SupplierId, CategoryId, QuantityPerUnit, "
+                . "UnitPrice, UnitsInStock, UnitsOnOrder, ReorderLevel )"
+                . "VALUES( ?, ?, ?, ? ,?, ?, ?, ?)";        
+               
+            $stmt = $this->execute( $sql, $aValues );            
         
-        try{
-            $stmt = $this->pdoData->prepare( $sql );
-            
-        } catch (PDOException $ex) {
-
-        }
     }
     
     public function updateProduct()
