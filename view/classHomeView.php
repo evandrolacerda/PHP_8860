@@ -24,6 +24,9 @@ class HomeView
             case "home_init":
                 $this->renderHomeInitView( $oModel );
                 break;
+            case "home_adm":
+                $this->renderHomeAdmView( $oModel );
+                break;
 
             case "default":
             default:
@@ -33,7 +36,7 @@ class HomeView
 
     private function renderHomeInitView( $oModel )
     {
-        $htmlMenuInit = $this->buildMenuInit( $oModel );
+        $htmlMenuInit = $this->buildMenu( $oModel->getMenuInit(), $oModel );
         $htmlFooter = $this->buildFooterInit( $oModel );
 
         $sResult = "{\"Data\":[";
@@ -49,24 +52,40 @@ class HomeView
         echo $sResult;
 
     } /* private function renderHomeInitView( $oModel ) */
-
-    private function buildMenuInit( $oModel )
+    
+    private function renderHomeAdmView( $oModel )
     {
-        $asInitMenu = $oModel->getMenuInit();
+        $htmlMenu = $this->buildMenu( $oModel->getMenuAdm(), $oModel );
 
-        $sHtml = "";
-        foreach ( $asInitMenu as $csvItem )
+        $sResult = "{\"Data\":[";
+
+        $sResult .= "{\"TargetId\":\"hdrTop\",";
+        $sResult .= "\"Content\":\"$htmlMenu\"}";
+
+      
+        $sResult .= "]}";
+
+        echo $sResult;
+
+    } /* private function renderHomeInitView( $oModel ) */
+
+    private function buildMenu( $asMenu, $oModel = null )
+    {
+        
+        $sHtml = "<div class='btn-group .btn-group-justified' role='group'>";
+        foreach ( $asMenu as $csvItem )
         {
             $asItem = explode( ";", $csvItem );
 
             $sHtml .= "<button id='$asItem[0]' ".
                       "name='$asItem[0]' ".
-                      "class='menuItem' ".
+                      "class='btn btn-primary'".
                       "onclick='$asItem[2]'>";
 
             $sHtml .= "$asItem[1]</button>";
 
         } // foreach ( $asInitMenu as $csvItem )
+        $sHtml.= '</div>';
         return  $sHtml;
     } /* private function buildMenuInit() */
 

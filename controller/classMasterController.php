@@ -2,6 +2,7 @@
 
 require_once "classBasicController.php";
 require_once "classHomeController.php";
+require_once "classProdutosController.php";
 require_once "classShowRoomController.php";
 
 /**
@@ -43,6 +44,10 @@ class MasterController
 
             case "Basic":
                 $oController = new BasicController();
+                $oController->run( $this->sAction, $this->asArgs, $this->sView );
+                break;
+            case "Products":
+                $oController = new ProdutosController();
                 $oController->run( $this->sAction, $this->asArgs, $this->sView );
                 break;
 
