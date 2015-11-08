@@ -16,6 +16,12 @@
                     <input type="text" class="form-control input-sm" name="nome" placeholder="Nome Completo" value="nome">
                 </div>
             </div>
+            <div class="form-group">	
+                <label for="nome" class="col-lg-3 control-label">Nome do Produto</label>
+                <div class="col-lg-4">
+                    <input type="text" class="form-control input-sm" name="nome" placeholder="Nome Completo" value="nome">
+                </div>
+            </div>
             <div class="form-group">
                 <div class="col-lg-8 col-lg-offset-3">
                     <button type="reset" class="btn btn-default">Novo</button>

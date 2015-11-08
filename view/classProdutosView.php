@@ -10,16 +10,19 @@
  *
  * @author Administrador
  */
-class ProdutosView {
+class ProdutosView
+{
 
     //put your code here
-    function __construct() {
+    function __construct()
+    {
         
     }
 
-/*  */
+    /*  */
 
-    public function render($sView, ProdutosModel $oModel) {
+    public function render($sView, ProdutosModel $oModel)
+    {
         switch ($sView) {
             case "error_view":
                 $this->renderErrorView($oModel);
@@ -36,9 +39,10 @@ class ProdutosView {
         } /*  */
     }
 
-/*  */
+    /*  */
 
-    private function renderDefaultView($oModel) {
+    private function renderDefaultView($oModel)
+    {
         $htmlResult = "<h5>Módulo Products</h5>";
         $sResult = "{\"Data\":[";
 
@@ -49,8 +53,9 @@ class ProdutosView {
 
         echo $sResult;
     }
-    
-    private function renderFormView($oModel) {
+
+    private function renderFormView($oModel)
+    {
         $htmlResult = $this->getForm();
         $sResult = "{\"Data\":[";
 
@@ -61,19 +66,29 @@ class ProdutosView {
 
         echo $sResult;
     }
-    
+
+    private function escapeJsonString($value)
+    {
+        # list from www.json.org: (\b backspace, \f formfeed)    
+        $escapers = array("\\", "/", "\"", "\n", "\r", "\t", "\x08", "\x0c");
+        $replacements = array("\\\\", "\\/", "\\\"", "\\n", "\\r", "\\t", "\\f", "\\b");
+        $result = str_replace($escapers, $replacements, $value);
+        return $result;
+    }
+
     private function getForm()
     {
         $html = file_get_contents('view/html/form_product.php');
-        $html = str_replace('"',"'", $html);
-       
-        
+        $html = $this->escapeJsonString($html);
+
+
         return $html;
     }
 
-/* private function renderDefaultView( $oModel ) */
+    /* private function renderDefaultView( $oModel ) */
 
-    private function renderErrorView($oModel) {
+    private function renderErrorView($oModel)
+    {
         $sError = $oModel->getError();
 
         $sResult = "{\"Data\":[";
@@ -86,7 +101,7 @@ class ProdutosView {
         echo $sResult;
     }
 
-/* private function renderErrorView( $oModel ) */
+    /* private function renderErrorView( $oModel ) */
 }
 
 /* class ProdutosView */
