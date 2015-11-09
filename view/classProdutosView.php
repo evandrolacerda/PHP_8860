@@ -66,8 +66,9 @@ class ProdutosView
 
         echo $sResult;
     }
+  
+     private function escapeJsonString($value)
 
-    private function escapeJsonString($value)
     {
         # list from www.json.org: (\b backspace, \f formfeed)    
         $escapers = array("\\", "/", "\"", "\n", "\r", "\t", "\x08", "\x0c");
@@ -76,11 +77,12 @@ class ProdutosView
         return $result;
     }
 
+
+    
     private function getForm()
     {
         $html = file_get_contents('view/html/form_product.php');
-        $html = $this->escapeJsonString($html);
-
+        $html = $this->escapeJsonString( $html );      
 
         return $html;
     }
